@@ -2,10 +2,10 @@
   "name": "P41z-Md",
   "version": "13.0.0",
   "description": "P41z B0t Multi Device",
-  "main": "paiz.js",
+  "main": "zeeone.js",
   "license": "MIT",
   "scripts": {
-    "start": "node paiz.js"
+    "start": "node zeeone.js"
    },
   "keywords": [
     "whatsapp",
