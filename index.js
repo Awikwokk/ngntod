@@ -1280,16 +1280,33 @@ break
                 await alpha.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
             }
             break
-            case 'tagall': case 'infoall':
-                if (!m.isGroup) return reply(lang.groupOnly())
-                if (!(isGroupAdmins || isGroupOwner )) return reply(lang.adminOnly())
-                let tekss = `══✪〘 *👥 Mention All* 〙✪══\n\n➲ *Message : ${q ? q : 'Nothing'}*\n\n`
-		      	for (let mem of participants) {
-		            tekss += `🏅 @${mem.id.split('@')[0]}\n`
-				}
-                tekss += `\n⋙ *${botname}* ⋘`
-                alpha.sendMessage(from, { text: tekss, mentions: participants.map(a => a.id) }, { quoted: fkontak })
-            break
+            case 'tagall': {
+
+                if (!m.isGroup) throw mess.group
+
+                if (!isBotAdmins) throw mess.botAdmin
+
+                if (!isAdmins) throw mess.admin
+
+                var jmlh = 1
+
+let teks = `*👥 TAG ALL 👥
+
+ 
+
+ • *Pesan : ${q ? q : 'kosong'}*\n\n`
+
+                for (let mem of participants) {
+
+                teks += `${jmlh++}. @${mem.id.split('@')[0]}\n`
+
+                }
+
+                hinata.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+
+                }
+
+                break
             case 'hidetag':
                 if (!m.isGroup) return reply(lang.groupOnly())
                 if (!(isGroupAdmins || isGroupOwner )) return reply(lang.adminOnly())
